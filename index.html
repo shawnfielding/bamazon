@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tables Page</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Bamazon</h1>
+      <hr>
+      <h2 class="text-center">Like Amazon without the Drones</h2>
+      <br>
+    </div>
+    <h2>Our current Stock</h2>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Current Products</h4>
+          </div>
+          <div class="panel-body">
+          <table width=100%>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Item ID</th>
+                </tr>
+              </thead>
+              <tbody id="well-Section">
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form>
+  <div class="form-group">
+    <label for="formGrouInput">Item ID</label>
+    <input type="text" class="form-control" id="wantedId" placeholder="ID">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Quantity</label>
+    <input type="text" class="form-control" id="wantedQuantity" placeholder="Quantity">
+  </div>
+</form>
+    </div>
+</body>
+<script type="text/javascript">
+    $.get("/products", function(data) {
+      console.log(data);
+      for (var i = 0; i < data.length; i++) {
+        $("#well-Section").append("<tr><td>" + data[i].product_name + "</td><td>" + data[i].price + "</td><td>" + data[i].item_id + "</td></tr>");
+       }
+     });
+
+</script>
+</html>
